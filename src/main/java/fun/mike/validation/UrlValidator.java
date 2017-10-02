@@ -27,6 +27,7 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 /**
  * <p><b>URL Validation</b> routines.</p>
@@ -309,10 +310,10 @@ public class UrlValidator implements Serializable {
         }
 
         String scheme = urlMatcher.group(PARSE_URL_SCHEME);
-        if (!isValidScheme(scheme)) {
-            String problem = String.format("Invalid scheme \"%s\".",
-                                           scheme);
-            return UrlValidation.invalid(value, problem);
+        UrlValidation schemeValidation = validateScheme(scheme);
+        if (!schemeValidation.isValid()) {
+            return UrlValidation.invalid(value,
+                                         schemeValidation.getProblem().get());
         }
 
         String authority = urlMatcher.group(PARSE_URL_AUTHORITY);
@@ -379,23 +380,39 @@ public class UrlValidator implements Serializable {
      * Matching is case-blind.
      * @param scheme The scheme to validate.  A <code>null</code> value is considered
      * invalid.
-     * @return true if valid.
+     * @return a validation
      */
-    protected boolean isValidScheme(String scheme) {
+    protected UrlValidation validateScheme(String scheme) {
         if (scheme == null) {
-            return false;
+            return UrlValidation.invalid(scheme, "Scheme is null.");
         }
 
         // TODO could be removed if external schemes were checked in the ctor before being stored
         if (!SCHEME_PATTERN.matcher(scheme).matches()) {
-            return false;
+            String problem = String.format("Scheme \"%s\" failed regex pattern match.", scheme);
+            return UrlValidation.invalid(scheme, problem);
         }
 
         if (isOff(ALLOW_ALL_SCHEMES) && !allowedSchemes.contains(scheme.toLowerCase(Locale.ENGLISH))) {
-            return false;
+            String schemes = String.join(", ", allowedSchemes);
+            String problem = String.format("Scheme \"%s\" not allowed. Allowed schemes: %s", scheme, schemes);
+            return UrlValidation.invalid(scheme, problem);
         }
 
-        return true;
+        return UrlValidation.valid(scheme);
+    }
+
+    /**
+     * Validate scheme. If schemes[] was initialized to a non null,
+     * then only those schemes are allowed.
+     * Otherwise the default schemes are "http", "https", "ftp".
+     * Matching is case-blind.
+     * @param scheme The scheme to validate.  A <code>null</code> value is considered
+     * invalid.
+     * @return true if valid.
+     */
+    protected boolean isValidScheme(String scheme) {
+        return validateScheme(scheme).isValid();
     }
 
     /**
@@ -574,25 +591,9 @@ public class UrlValidator implements Serializable {
     }
 
     public static UrlValidation http(String value) {
-        UrlValidation genericValidation = new UrlValidator().validate(value);
-
-        if(!genericValidation.isValid()) {
-            return genericValidation;
-        }
-
-        Matcher urlMatcher = URL_PATTERN.matcher(value);
-
-        if (!urlMatcher.matches()) {
-            return UrlValidation.invalid(value, "URL regex pattern match failed.");
-        }
-
-        String scheme = urlMatcher.group(PARSE_URL_SCHEME);
-
-        if (!scheme.equals("http") && !scheme.equals("https")) {
-            String problem = String.format("Invalid HTTP scheme \"%s\"; expected a scheme of \"http\" or \"https\".", scheme);
-            return UrlValidation.invalid(value, problem);
-        }
-
-        return UrlValidation.valid(value);
+        String[] allowedSchemes = new String[] {"http", "https"};
+        long options = ALLOW_LOCAL_URLS;
+        UrlValidator validator = new UrlValidator(allowedSchemes, options);
+        return validator.validate(value);
     }
 }

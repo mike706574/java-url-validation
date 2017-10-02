@@ -605,14 +605,14 @@ protected void setUp() {
 
     public void testWrongScheme() {
         final String VALID_FTP_URL = "ftp://www.google.com";
-        final String EXPECTED_MESSAGE = "Invalid HTTP scheme \"ftp\"; expected a scheme of \"http\" or \"https\".";
+        final String EXPECTED_MESSAGE = "Scheme \"ftp\" not allowed. Allowed schemes: http, https";
         assertEquals(UrlValidation.invalid(VALID_FTP_URL, EXPECTED_MESSAGE),
                      UrlValidator.http(VALID_FTP_URL));
     }
 
     public void testInvalidHttpUrl() {
         final String INVALID_HTTP_URL = "http://e/law.k  noi";
-        final String EXPECTED_MESSAGE = "Invalid authority \"e\".";
+        final String EXPECTED_MESSAGE = "Invalid path \"/law.k  noi\".";
         assertEquals(UrlValidation.invalid(INVALID_HTTP_URL, EXPECTED_MESSAGE),
                      UrlValidator.http(INVALID_HTTP_URL));
     }
