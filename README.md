@@ -1,4 +1,4 @@
-# java-url-validator
+# java-url-validation
 
 A project.
 
