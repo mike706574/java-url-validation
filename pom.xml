@@ -35,10 +35,9 @@
   </distributionManagement>
 
   <scm>
-    <connection>scm:git:https://github.com/mike706574/java-map-support.git</connection>
-    <developerConnection>scm:git:https://github.com/mike706574/java-map-support.git</developerConnection>
-    <url>http://github.com/mike706574/java-map-support/tree/master</url>
-    <tag>url-validation-0.0.1</tag>
+    <connection>scm:git:https://github.com/mike706574/java-url-validation.git</connection>
+    <developerConnection>scm:git:https://github.com/mike706574/java-url-validation.git</developerConnection>
+    <url>http://github.com/mike706574/java-url-validation/tree/master</url>
   </scm>
 
   <developers>
