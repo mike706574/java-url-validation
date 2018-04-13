@@ -60,7 +60,7 @@ public class UrlValidation {
         }
 
         String problem = getProblem().orElseThrow(() -> {
-            String message = String.format("\"%s\" is invalid, but no problem found..");
+            String message = String.format("\"%s\" is invalid, but no problem found.");
             return new IllegalStateException(message);
         });
         String message = String.format("%s: %s", prefix, problem);
