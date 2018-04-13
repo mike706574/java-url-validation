@@ -1,8 +1,6 @@
 # url-validation
 
-[![Maven Central](https://img.shields.io/maven-central/v/fun.mike/url-validation.svg)](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22fun.mike%22%20AND%20a%3A%22url-validation%22)
-
-http://search.maven.org/#search%7Cga%7C1%7Curl-validation
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/fun.mike/url-validation/badge.svg)](https://maven-badges.herokuapp.com/maven-central/fun.mike/url-validation)
 
 URL validation. Pulled from Apache.
 
