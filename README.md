@@ -6,6 +6,13 @@ URL validation. Pulled from Apache.
 
 [API Docs](http://javadoc.io/doc/fun.mike/url-validation)
 
+## Usage
+
+```java
+UrlValidator.http("http://e/law.k  noi").orThrow("Invalid URL");
+=> java.lang.IllegalStateException("Invalid URL: Invalid path \"/law.k  noi\".")
+```
+
 ## Build
 
 [![CircleCI](https://circleci.com/gh/mike706574/url-validation.svg?style=svg)](https://circleci.com/gh/mike706574/url-validation)
