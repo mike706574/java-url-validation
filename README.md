@@ -1,10 +1,9 @@
 # url-validation
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/fun.mike/url-validation/badge.svg)](https://maven-badges.herokuapp.com/maven-central/fun.mike/url-validation)
+[![Javadocs](https://www.javadoc.io/badge/fun.mike/url-validation.svg)](https://www.javadoc.io/doc/fun.mike/url-validation)
 
 URL validation. Pulled from Apache.
-
-[API Docs](http://javadoc.io/doc/fun.mike/url-validation)
 
 ## Build
 
