@@ -7,7 +7,7 @@ URL validation. Pulled from Apache.
 
 ## Build
 
-[![CircleCI](https://circleci.com/gh/mike706574/url-validation.svg?style=svg)](https://circleci.com/gh/mike706574/url-validation)
+[![CircleCI](https://circleci.com/gh/mike706574/java-url-validation.svg?style=svg)](https://circleci.com/gh/mike706574/java-url-validation)
 
 ## Copyright and License
 
