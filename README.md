@@ -1,12 +1,11 @@
 # url-validation
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/fun.mike/url-validation/badge.svg)](https://maven-badges.herokuapp.com/maven-central/fun.mike/url-validation)
+[![Javadocs](https://www.javadoc.io/badge/fun.mike/url-validation.svg)](https://www.javadoc.io/doc/fun.mike/url-validation)
 
-URL validation. Pulled from Apache.
+URL validation. Pulled from `commons-validator`.
 
-[API Docs](http://javadoc.io/doc/fun.mike/url-validation)
-
-## Usage
+## Example
 
 ```java
 UrlValidator.http("http://e/law.k  noi").orThrow("Invalid URL");
@@ -15,7 +14,7 @@ UrlValidator.http("http://e/law.k  noi").orThrow("Invalid URL");
 
 ## Build
 
-[![CircleCI](https://circleci.com/gh/mike706574/url-validation.svg?style=svg)](https://circleci.com/gh/mike706574/url-validation)
+[![CircleCI](https://circleci.com/gh/mike706574/java-url-validation.svg?style=svg)](https://circleci.com/gh/mike706574/java-url-validation)
 
 ## Copyright and License
 
